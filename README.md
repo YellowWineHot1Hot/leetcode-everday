@@ -7,10 +7,13 @@
 还需要：
 1. 文件组织调整
 2. C++编译环境
+3. md语法学习及插件安装
 
-# 2023.2.22 - [LC1140](https://leetcode.cn/problems/stone-game-ii/description/)
+# 2023.2.22 - [LC1140](https://leetcode.cn/problems/stone-game-ii/description/) - 596
 
 今天的每日一题不太会做，参考灵神[代码](https://leetcode.cn/problems/stone-game-ii/solutions/2125753/jiao-ni-yi-bu-bu-si-kao-dong-tai-gui-hua-jjax/)
+
+方法：dfs、dp (both weak)
 
 '''C++
 class Solution {
@@ -38,4 +41,3 @@ public:
 '''
 
 今天感受：增量学习
-
