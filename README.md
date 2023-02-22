@@ -15,7 +15,7 @@
 
 方法：dfs、dp (both weak)
 
-'''C++
+```C++
 class Solution {
 public:
     int stoneGameII(vector<int>& piles) {
@@ -38,6 +38,6 @@ public:
         return f[0][1];
     }
 };
-'''
+```
 
 今天感受：增量学习
