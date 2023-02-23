@@ -41,3 +41,29 @@ public:
 ```
 
 今天感受：增量学习
+
+# 2023.2.23 - [LC1238](https://leetcode.cn/problems/circular-permutation-in-binary-representation/description/) - 597
+
+今日的每日一题依然不会做，官方[题解](https://leetcode.cn/problems/circular-permutation-in-binary-representation/solutions/2126240/xun-huan-ma-pai-lie-by-leetcode-solution-6e40/)说是格雷码，有公式解.
+
+方法：构造（归纳 / 数学）
+
+```C++
+class Solution {
+public:
+    vector<int> circularPermutation(int n, int start) {
+        vector<int> ret;
+        ret.reserve(1 << n);
+        ret.push_back(0);
+        for (int i = 1; i <= n; i ++ 1)
+        {
+            int m = ret.size();
+            for (int j = m - 1; j >= 0; j -- )
+                ret.push_back(ret[j] | (1 << ()));
+        }
+        return ret;
+    }
+};
+```
+
+今日心情较平静.
