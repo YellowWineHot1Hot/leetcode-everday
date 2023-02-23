@@ -11,7 +11,7 @@
 
 # 2023.2.22 - [LC1140](https://leetcode.cn/problems/stone-game-ii/description/) - 596
 
-今天的每日一题不太会做，参考灵神[代码](https://leetcode.cn/problems/stone-game-ii/solutions/2125753/jiao-ni-yi-bu-bu-si-kao-dong-tai-gui-hua-jjax/)
+今天的每日一题不太会做，参考灵神[代码](https://leetcode.cn/problems/stone-game-ii/solutions/2125753/jiao-ni-yi-bu-bu-si-kao-dong-tai-gui-hua-jjax/).
 
 方法：dfs、dp (both weak)
 
