@@ -67,3 +67,51 @@ public:
 ```
 
 今日心情较平静.
+
+# 2023.2.24 - [LC2357 and LC445] - 598, 599
+
+好像统计错误，之前做过的一道题统计为598
+
+方法：
+1. map
+2. 模拟加法
+
+```C++
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        auto x1 = l1, x2 = l2;
+        vector<int> v1, v2;
+        while (x1) v1.push_back(x1 -> val), x1 = x1 -> next; reverse(v1.begin(), v1.end());
+        while (x2) v2.push_back(x2 -> val), x2 = x2 -> next; reverse(v2.begin(), v2.end());
+        int num = 0;
+        if (v1.size() < v2.size()) swap(v1, v2);
+        vector<int> v(v1.size());
+        for (int i = 0; i < v1.size() || i < v2.size(); i ++ )
+        {
+            if (i < v2.size())
+            {
+                v[i] = (v1[i] + v2[i] + num) % 10;
+                num = (v1[i] + v2[i] + num) / 10;
+            }
+            else 
+            {
+                v[i] = (v1[i] + num) % 10;
+                num = (v1[i] + num) / 10;
+            }
+        }
+        if (num) v.push_back(num);
+        ListNode* l;
+        ListNode* lt = nullptr;
+        for (int i = 0; i < v.size(); i ++ )
+        {
+            if (lt) l = new ListNode(v[i], lt); 
+            else l = new ListNode(v[i]);
+            lt = l;
+        }
+        return l;
+    }
+};
+```
+
+今日心情较阴.
