@@ -115,3 +115,28 @@ public:
 ```
 
 今日心情较阴.
+
+# 2023.2.25 - [LC1247] - 600
+
+稍简单的题，竟然还看题解了，需要模拟一下并且注意只有两种字母.
+
+方法：贪心
+
+```C++
+class Solution {
+public:
+    int minimumSwap(string s1, string s2) {
+        int n = s1.size();
+        int xy = 0, yx = 0;
+        for (int i = 0; i < n; i ++ )
+        {
+            if (s1[i] == 'x' && s2[i] == 'y') xy ++ ;
+            if (s1[i] == 'y' && s2[i] == 'x') yx ++ ;
+        }
+        if ((xy + yx) % 2) return -1; 
+        return xy / 2 + yx / 2 + xy % 2 + yx % 2;
+    } 
+};
+```
+
+今日心情良好.
