@@ -42,6 +42,7 @@ public:
 
 今天感受：增量学习
 
+
 # 2023.2.23 - [LC1238](https://leetcode.cn/problems/circular-permutation-in-binary-representation/description/) - 597
 
 今日的每日一题依然不会做，官方[题解](https://leetcode.cn/problems/circular-permutation-in-binary-representation/solutions/2126240/xun-huan-ma-pai-lie-by-leetcode-solution-6e40/)说是格雷码，有公式解.
@@ -67,6 +68,7 @@ public:
 ```
 
 今日心情较平静.
+
 
 # 2023.2.24 - [LC2357 and LC445] - 598, 599
 
@@ -116,6 +118,7 @@ public:
 
 今日心情较阴.
 
+
 # 2023.2.25 - [LC1247] - 600
 
 稍简单的题，竟然还看题解了，需要模拟一下并且注意只有两种字母.
@@ -140,3 +143,42 @@ public:
 ```
 
 今日心情良好.
+
+
+# 2023.2.26 - [LC1255] - 601
+
+仍然看了一眼题解，很快写出.
+
+方法：状压DP
+
+```C++
+class Solution {
+public:
+    int maxScoreWords(vector<string>& words, vector<char>& letters, vector<int>& score) {
+        vector<int> cnt(26);
+        for (int i = 0; i < letters.size(); i ++ ) cnt[letters[i] - 'a'] ++ ;
+        int n = words.size();
+        int gd = 0;
+        for (int i = 0; i < 1 << n; i ++ ) {
+            vector<int> v(26);
+            for (int j = 0; j < n; j ++ ) {
+                if ((i >> j) & 1) {
+                    for (auto c : words[j]) v[c - 'a'] ++ ;
+                }
+            }
+            int ngd = 0, flag = 0;
+            for (int j = 0; j < 26; j ++ ) {
+                if (v[j] > cnt[j]) {
+                    flag = 1;
+                    break;
+                }
+                ngd += v[j] * score[j];
+            }
+            if (!flag) gd = max(gd, ngd);
+        }
+        return gd;
+    }
+};
+```
+
+今日心情复杂.
