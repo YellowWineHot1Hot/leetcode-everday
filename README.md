@@ -182,3 +182,28 @@ public:
 ```
 
 今日心情复杂.
+
+# 2023.2.27 - [LC1144] - 602
+
+选用[灵神](https://leetcode.cn/u/endlesscheng/)更加简洁的写法.
+
+方法：贪心
+
+```C++
+class Solution {
+public:
+    int movesToMakeZigzag(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> v(2);
+        for (int i = 0 ; i < nums.size(); i ++ )
+        {
+            int l = i ? nums[i - 1] : INT_MAX;
+            int r = i < n - 1 ? nums[i + 1] : INT_MAX;
+            v[i % 2] += max(nums[i] - min(l, r) + 1, 0);
+        }
+        return min(v[0], v[1]);
+    }
+};
+```
+
+今日心情平静.
