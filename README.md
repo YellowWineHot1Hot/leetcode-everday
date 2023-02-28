@@ -207,3 +207,27 @@ public:
 ```
 
 今日心情平静.
+
+
+# 2023.2.28 - [LC2363] - 603
+
+水题
+
+```C++
+class Solution {
+public:
+    vector<vector<int>> mergeSimilarItems(vector<vector<int>>& items1, vector<vector<int>>& items2) {
+        map<int, int> mp;
+        for (int i = 0; i < items1.size() || i < items2.size(); i ++ )
+        {
+            if (i < items1.size()) mp[items1[i][0]] += items1[i][1];
+            if (i < items2.size()) mp[items2[i][0]] += items2[i][1];
+        }
+        vector<vector<int>> res;
+        for (auto [a, b] : mp) res.push_back({a, b});
+        return res;
+    }
+};
+```
+
+今日心情较平静.
