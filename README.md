@@ -231,3 +231,32 @@ public:
 ```
 
 今日心情较平静.
+
+
+# 2023.3.1 - [LC2373] - 604
+
+水题
+
+```C++
+class Solution {
+public:
+    vector<vector<int>> largestLocal(vector<vector<int>>& grid) {
+        int n = grid.size(), m = grid[0].size();
+        vector<vector<int>> vv(n - 2, vector<int>(m - 2));
+        for (int i = 1; i < n - 1; i ++ ) 
+        {
+            for (int j = 1; j < m - 1; j ++ )
+            {
+                int t = INT_MIN;
+                for (int u = -1; u <= 1; u ++ )
+                    for (int v = -1; v <= 1; v ++ )
+                        t = max(t, grid[i + u][j + v]);
+                vv[i - 1][j - 1] = t;
+            }
+        }
+        return vv;
+    }
+};
+```
+
+今日心情较难过.
