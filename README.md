@@ -260,3 +260,34 @@ public:
 ```
 
 今日心情较难过.
+
+
+# 2023.3.2 - [LC 面试题 05.02] - 605
+
+方法：模拟
+
+```C++
+class Solution {
+public:
+    string printBin(double num) {
+        if (num == 0.0) return "0";
+        string s = "0.";
+        int cnt = 0;
+        while (cnt < 30)
+        {
+            num *= 2;
+            if (num >= 1) 
+            {
+                num -- ;
+                s += '1';
+                if (num == 0.0) return s;
+            }
+            else s += '0';
+            cnt ++ ;
+        }
+        return "ERROR";
+    }
+};
+```
+
+今日心情挺难过的.
