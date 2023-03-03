@@ -291,3 +291,37 @@ public:
 ```
 
 今日心情挺难过的.
+
+
+# 2023.3.3 - [LC1487] - 606
+
+方法：哈希表
+
+```C++
+class Solution {
+public:
+    vector<string> getFolderNames(vector<string>& names) {
+        unordered_map<string, int> um;
+        vector<string> res;
+        for (auto &name : names) 
+        {
+            if (!um.count(name))
+            {
+                res.push_back(name);
+                um[name] = 1;
+            }
+            else 
+            {
+                int k = um[name];
+                while (um.count(name + "(" + to_string(k) + ")")) k ++ ;
+                res.push_back(name + "(" + to_string(k) + ")");
+                um[name] = k + 1;
+                um[name + "(" + to_string(k) + ")"] = 1;
+            }
+        }
+        return res;
+    }
+};
+```
+
+保持敬畏，保持谦逊. 积累、分享，向前看.
