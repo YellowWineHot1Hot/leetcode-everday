@@ -325,3 +325,32 @@ public:
 ```
 
 保持敬畏，保持谦逊. 积累、分享，向前看.
+
+
+# 2023.3.4 - [LC982] - 607
+
+方法：求x子集
+
+```C++
+class Solution {
+public:
+    int countTriplets(vector<int>& nums) {
+        unordered_map<int, int> um;
+        int n = nums.size();
+        for (int i = 0; i < n; i ++ )
+            for (int j = 0; j < n; j ++ )
+                um[nums[i] & nums[j]] ++ ;
+        int ans = 0;
+        for (int i = 0; i < n; i ++ )
+        {
+            int x = nums[i] ^ 0xffff;
+            for (int j = x; j; j = (j - 1) & x) // 求x的子集，最后记得加上空集
+                ans += um[j];
+            ans += um[0];
+        }
+        return ans;
+    }
+};
+```
+
+今日心情较难受.
