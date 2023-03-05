@@ -354,3 +354,54 @@ public:
 ```
 
 今日心情较难受.
+
+
+# 2023.3.5 - [LC1599] - 608
+
+```C++
+class Solution {
+public:
+    int minOperationsMaxProfit(vector<int>& customers, int boardingCost, int runningCost) {
+        int n = customers.size();
+        int rm = 0;
+        int maxy = 0, sumy = 0, x = 0;
+        for (int i = 0; i < n; i ++ )
+        {
+            rm += customers[i];
+            if (rm <= 4)
+            {
+                sumy += rm * boardingCost - runningCost;
+                rm = 0;
+            }
+            else
+            {
+                sumy += 4 * boardingCost - runningCost;
+                rm -= 4;
+            }
+            if (sumy > maxy)
+            {
+                maxy = sumy;
+                x = i + 1;
+            }
+        }
+        int x1 = rm / 4;
+        int x2 = rm % 4;
+        sumy += x1 * 4 * boardingCost - x1 * runningCost;
+        if (sumy > maxy) 
+        {
+            maxy = sumy;
+            x = n + x1;
+        }
+        if (!x2) return x ? x : -1;
+        sumy += x2 * boardingCost - runningCost;
+        if (sumy > maxy) 
+        {
+            maxy = sumy;
+            x = n + x1 + 1;
+        }
+        return x ? x : -1;
+    }
+};
+```
+
+今日心情较紧张.
