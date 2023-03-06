@@ -358,6 +358,8 @@ public:
 
 # 2023.3.5 - [LC1599] - 608
 
+方法：模拟
+
 ```C++
 class Solution {
 public:
@@ -405,3 +407,28 @@ public:
 ```
 
 今日心情较紧张.
+
+方法：前缀和
+
+# 2023.3.6 - [LC1653] - 609
+
+```C++
+class Solution {
+public:
+    int minimumDeletions(string s) {
+        int n = s.size();
+        vector<int> va(n + 1), vb(n + 1);
+        for (int i = 1; i <= n; i ++ )
+        {
+            va[i] = va[i - 1] + (s[i - 1] == 'a');
+            vb[i] = vb[i - 1] + (s[i - 1] == 'b');
+        }
+        int res = INT_MAX;
+        for (int i = 1; i <= n + 1; i ++ )
+            res = min(res, n - (vb[n] - vb[i - 1]) - va[i -1]);
+        return res;
+    }
+};
+```
+
+今日心情难过.
