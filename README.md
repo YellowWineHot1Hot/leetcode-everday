@@ -432,3 +432,72 @@ public:
 ```
 
 今日心情难过.
+
+
+# 2023.3.7 - [LC1096] - 610
+
+先用题解喔，还没有调出来捏~
+
+方法：模拟 + 递归
+
+```C++
+class Solution {
+public:
+    vector<string> braceExpansionII(string expression) {
+        set<string> st = dfs(expression, 0, expression.size());
+        return vector<string>(st.begin(), st.end());
+    }
+
+    set<string> dfs(string &expression, int st, int ed) {
+        if (ed - st == 1) 
+        {
+            set<string> temp;
+            temp.insert(expression.substr(st, 1));
+            return temp;
+        }
+        int cnt = 0;
+        set<string> res;
+        set<string> sst;
+        int last = st;
+        for (int i = 0; i < ed; i ++ )
+        {
+            if (cnt == 1 && (expression[i] == ',' || expression[i] == '}')) 
+            {
+                set<string> ds = dfs(expression, last + 1, i);
+                if (sst.empty()) sst = ds;
+                else 
+                {
+                    set<string> sst1;
+                    for (const auto &x : sst)
+                        for (const auto &y : ds)
+                            sst1.insert(x + y);
+                    swap(sst, sst1);
+                }
+                res.insert(sst.begin(), sst.end());
+                sst.clear();
+                last = i;
+            }
+            if (cnt == 1 && expression[i]== '{') {
+                if (i - last != 1) {
+                    set<string> ds = dfs(expression, last + 1, i);
+                    if (sst.empty()) sst = ds;
+                    else 
+                    {
+                        set<string> sst1;
+                        for (const auto &x : sst)
+                            for (const auto &y : ds)
+                                sst1.insert(x + y);
+                        swap(sst, sst1);
+                    }
+                    last = i - 1;
+                }
+            }
+            if (expression[i] == '{') cnt ++ ;
+            if (expression[i] == '}') cnt -- ;
+        }
+        return res;
+    }
+};
+```
+
+今日心情较平静.
