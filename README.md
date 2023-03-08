@@ -501,3 +501,26 @@ public:
 ```
 
 今日心情较平静.
+
+
+# 2023.3.8 - [剑指Offer47] - 611
+
+方法：线性DP
+
+```C++
+class Solution {
+public:
+    int maxValue(vector<vector<int>>& grid) {
+        int n = grid.size();
+        int m = grid[0].size();
+        int dp[n + 1][m + 1];
+        memset(dp, 0, sizeof dp);
+        for (int i = 0; i < n; i ++ )
+            for (int j = 0; j < m; j ++ )
+                dp[i + 1][j + 1] = grid[i][j] + max(dp[i + 1][j], dp[i][j + 1]);
+        return dp[n][m];
+    }
+};
+```
+
+今日心情较复杂.
