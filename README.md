@@ -524,3 +524,33 @@ public:
 ```
 
 今日心情较复杂.
+
+
+# 2023.3.9 - [LC2379] - 612
+
+方法：双指针
+
+```C++
+class Solution {
+public:
+    int minimumRecolors(string blocks, int k) {
+        int i = 0, j = 0;
+        int n = blocks.size();
+        int res = k;
+        int cnt = 0;
+        while (i < n && j < n)
+        {
+            while (j < n && j - i + 1 <= k) 
+            {
+                if (blocks[j] == 'W') cnt ++ ;
+                j ++ ;
+            }
+            //cout << i << " " << j << " " << cnt << endl;
+            res = min(res, cnt);
+            if (blocks[i] == 'W') cnt -- ;
+            i ++ ;
+        }
+        return res;
+    }
+};
+```
