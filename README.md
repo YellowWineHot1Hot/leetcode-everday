@@ -434,7 +434,7 @@ public:
 今日心情难过.
 
 
-# 2023.3.7 - [LC1096] - 610
+# 2023.3.7 - [LC1096] - 610*
 
 先用题解喔，还没有调出来捏~
 
@@ -545,12 +545,39 @@ public:
                 if (blocks[j] == 'W') cnt ++ ;
                 j ++ ;
             }
-            //cout << i << " " << j << " " << cnt << endl;
+            // cout << i << " " << j << " " << cnt << endl;
             res = min(res, cnt);
             if (blocks[i] == 'W') cnt -- ;
             i ++ ;
         }
         return res;
+    }
+};
+```
+
+# 2023.3.10 - [LC2379] - 613
+
+方法：模运算
+
+```C++
+class Solution {
+public:
+    int minSubarray(vector<int>& nums, int p) {
+        unordered_map<int, int> um;
+        um[0] = 0;
+        int res = INT_MAX;
+        int n = nums.size();
+        int accp = accumulate(nums.begin(), nums.end(), 0LL) % p;
+        if (!accp) return 0;
+        int sum = 0;
+        for (int i = 1; i <= n; i ++ )
+        {
+            sum = (sum + nums[i - 1]) % p;
+            if (um.count((sum - accp + p) % p))
+                res = min(res, i - um[(sum - accp + p) %p]);
+            um[sum] = i;
+        }
+        return res == n ? -1 : res;
     }
 };
 ```
