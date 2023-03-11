@@ -555,6 +555,7 @@ public:
 };
 ```
 
+
 # 2023.3.10 - [LC2379] - 613
 
 方法：模运算
@@ -578,6 +579,42 @@ public:
             um[sum] = i;
         }
         return res == n ? -1 : res;
+    }
+};
+```
+
+
+# 2023.3.11 - [面试题17.05] - 614
+
+方法：前缀和
+
+```C++
+class Solution {
+public:
+    vector<string> findLongestSubarray(vector<string>& array) {
+        map<int, int> mp;
+        mp[0] = 0;
+        int x = 0, y = 0;
+        int res = INT_MIN;
+        pair<int, int> p;
+        for (int i = 0; i < array.size(); i ++ )
+        {
+            string s = array[i];
+            if (isalpha(s[0])) x ++ ;
+            else y ++ ;
+            if (mp.count(x - y))
+            {
+                if(i + 1 - mp[x - y] > res)
+                {
+                    res = i + 1 - mp[x - y];
+                    p = {mp[x - y], i + 1};
+                }
+            }
+            else mp[x - y] = i + 1;
+        }
+        vector<string> v;
+        for (int i = p.first; i < p.second; i ++ ) v.push_back(array[i]);
+        return v;
     }
 };
 ```
