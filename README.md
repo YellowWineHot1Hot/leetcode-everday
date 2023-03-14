@@ -702,3 +702,29 @@ public:
     }
 };
 ```
+
+
+# 2023.3.14 - LC1605 - 617 - Middle
+
+方法：贪心
+
+```C++
+class Solution {
+public:
+    vector<vector<int>> restoreMatrix(vector<int>& rowSum, vector<int>& colSum) {
+        int i = 0, j = 0;
+        int n = rowSum.size(), m = colSum.size();
+        vector<vector<int>> v(n, vector<int>(m));
+        while (i < n && j < m)
+        {
+            int x = min(rowSum[i], colSum[j]);
+            v[i][j] = x;
+            rowSum[i] -= x;
+            colSum[j] -= x;
+            if (rowSum[i] == 0) i ++ ;
+            else j ++ ; 
+        }
+        return v;
+    }
+};
+```
