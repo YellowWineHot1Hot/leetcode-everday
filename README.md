@@ -728,3 +728,25 @@ public:
     }
 };
 ```
+
+
+# 2023.3.17 - LC2389 - 618 - Easy
+
+```C++
+class Solution {
+public:
+    vector<int> answerQueries(vector<int>& nums, vector<int>& queries) {
+        sort(nums.begin(), nums.end());
+        int n = nums.size();
+        vector<int> sum(n + 1);
+        for (int i = 0; i < nums.size(); i ++ ) sum[i + 1] = nums[i] + sum[i];
+        vector<int> res;
+        for (int i = 0; i < queries.size(); i ++ )
+        {
+            int x = upper_bound(sum.begin() + 1, sum.end(), queries[i]) - sum.begin() - 1;
+            res.push_back(x);
+        }
+        return res;
+    }
+};
+```
