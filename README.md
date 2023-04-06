@@ -704,7 +704,7 @@ public:
 ```
 
 
-# 2023.3.14 - LC1605 - 617 - Middle
+# 2023.3.14 - LC1605 - 617 - Medium
 
 方法：贪心
 
@@ -748,5 +748,32 @@ public:
         }
         return res;
     }
+};
+```
+
+# 2023.4.6 - LC1017 - 619 - Medium
+
+方法：负数进制转换
+
+```JavaScript
+var baseNeg2 = function(n) {
+    if (!n) return '0';
+    var str1 = '';
+    var k = 1;
+    while (n) {
+        if (n % 2) {
+            str1 += '1';
+            n -= k;
+        } else {
+            str1 += '0';
+        }
+        k *= -1;
+        n /= 2;
+    }
+    // JS字符串追加与翻转
+    var a1 = str1.split('');
+    var a2 = a1.reverse();
+    var str2 = a2.join('');
+    return str2;
 };
 ```
